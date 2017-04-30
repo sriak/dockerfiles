@@ -1,6 +1,6 @@
-FROM alpine:edge
+FROM armhf/alpine:edge
 
-ARG NEXTCLOUD_VERSION=11.0.2
+ARG NEXTCLOUD_VERSION=11.0.3
 ARG GNU_LIBICONV_VERSION=1.15
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
 
@@ -12,7 +12,9 @@ ENV UID=991 GID=991 \
     CRON_MEMORY_LIMIT=1g \
     TZ=Etc/UTC \
     DB_TYPE=sqlite3 \
-    DOMAIN=localhost
+    DOMAIN=localhost \
+    WEBROOT=/
+
 
 RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && BUILD_DEPS=" \

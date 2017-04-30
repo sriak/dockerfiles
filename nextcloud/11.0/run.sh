@@ -27,7 +27,7 @@ done
 echo "Done updating permissions."
 
 if [ ! -f /config/config.php ]; then
-    # New installation, run the setup
+    echo "New installation, run the setup"
     /usr/local/bin/setup.sh
 else
     occ upgrade

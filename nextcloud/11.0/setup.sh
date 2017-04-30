@@ -6,6 +6,8 @@
 #source /etc/mailinabox.conf # load global vars
 CONFIGFILE=/config/config.php
 
+[[ "$CONTEXT_PATH" ]] && CONTEXT_PATH="${CONTEXT_PATH#/}"
+URL_BASE="/${CONTEXT_PATH}"
 
 # Create an initial configuration file.
 instanceid=oc$(echo $PRIMARY_HOSTNAME | sha1sum | fold -w 10 | head -n 1)
@@ -28,8 +30,9 @@ cat > $CONFIGFILE <<EOF;
   ),
 
   'memcache.local' => '\OC\Memcache\APCu',
-
   'instanceid' => '$instanceid',
+  'overwritewebroot' => '$URL_BASE',
+  'overwrite.cli.url' => '$PROTOCOL$DOMAIN$URL_BASE',
 );
 ?>
 EOF

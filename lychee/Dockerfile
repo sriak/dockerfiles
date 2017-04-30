@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM armhf/alpine:edge
 
 ARG LYCHEE_VERSION=3.1.5
 
